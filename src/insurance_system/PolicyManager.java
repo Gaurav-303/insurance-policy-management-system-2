@@ -27,5 +27,14 @@ public class PolicyManager {
         }
         return expiringSoon;
     }
+    public List<Policy> getPoliciesByCoverage(String coverageType) {
+        List<Policy> result = new ArrayList<>();
+        for (Policy policy : hashSetPolicies) {
+            if (policy.getCoverageType().equalsIgnoreCase(coverageType)) {
+                result.add(policy);
+            }
+        }
+        return result;
+    }
 
 }
