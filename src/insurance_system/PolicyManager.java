@@ -13,4 +13,8 @@ public class PolicyManager {
         linkedHashSetPolicies.add(policy);
         treeSetPolicies.add(policy);
     }
+    public Set<Policy> getAllUniquePolicies() {
+        return new HashSet<>(hashSetPolicies);
+    }
+
 }
