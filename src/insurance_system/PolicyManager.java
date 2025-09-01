@@ -46,5 +46,30 @@ public class PolicyManager {
         }
         return duplicates;
     }
+    public void comparePerformance(List<Policy> policies) {
+        testPerformance(new HashSet<>(), policies, "HashSet");
+        testPerformance(new LinkedHashSet<>(), policies, "LinkedHashSet");
+        testPerformance(new TreeSet<>(), policies, "TreeSet");
+    }
+
+    private void testPerformance(Set<Policy> set, List<Policy> policies, String type) {
+        long start, end;
+
+        start = System.nanoTime();
+        set.addAll(policies);
+        end = System.nanoTime();
+        System.out.println(type + " - Add time: " + (end - start) + " ns");
+
+        Policy sample = policies.get(0);
+        start = System.nanoTime();
+        set.contains(sample);
+        end = System.nanoTime();
+        System.out.println(type + " - Search time: " + (end - start) + " ns");
+
+        start = System.nanoTime();
+        set.remove(sample);
+        end = System.nanoTime();
+        System.out.println(type + " - Remove time: " + (end - start) + " ns");
+    }
 
 }
