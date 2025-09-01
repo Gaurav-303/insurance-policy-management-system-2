@@ -16,5 +16,16 @@ public class PolicyManager {
     public Set<Policy> getAllUniquePolicies() {
         return new HashSet<>(hashSetPolicies);
     }
+    public List<Policy> getPoliciesExpiringSoon() {
+        LocalDate now = LocalDate.now();
+        LocalDate limit = now.plusDays(30);
+        List<Policy> expiringSoon = new ArrayList<>();
+        for (Policy policy : treeSetPolicies) {
+            if (!policy.getExpiryDate().isBefore(now) && !policy.getExpiryDate().isAfter(limit)) {
+                expiringSoon.add(policy);
+            }
+        }
+        return expiringSoon;
+    }
 
 }
