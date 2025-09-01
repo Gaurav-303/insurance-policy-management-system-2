@@ -36,5 +36,15 @@ public class PolicyManager {
         }
         return result;
     }
+    public Set<Policy> findDuplicatePolicies(List<Policy> policies) {
+        Set<Policy> unique = new HashSet<>();
+        Set<Policy> duplicates = new HashSet<>();
+        for (Policy policy : policies) {
+            if (!unique.add(policy)) {
+                duplicates.add(policy);
+            }
+        }
+        return duplicates;
+    }
 
 }
